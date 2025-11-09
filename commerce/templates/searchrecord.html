@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 12px;
+            background-color: #82d395ff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #16d640ff;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Search Customer Records</h2>
+
+    
+    <form method="GET" action="{% url 'searchrecordpage' %}">
+        <input type="text" name="q" placeholder="Search by ID, Name, Email, or Phone" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    
+    {% if results %}
+        <table>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Amount</th>
+            </tr>
+            {% for customer in results %}
+            <tr>
+                <td>{{ customer.customer_id }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.quantity }}</td>
+                <td>{{ customer.price }}</td>
+                <td>{{ customer.total_amount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/prashanth/"><button>Go Back Homepage</button></a>
+    {% else %}
+        {% if query %}
+            <p>No records found for "<strong>{{ query }}</strong>".</p>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>

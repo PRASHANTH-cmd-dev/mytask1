@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Customers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007b7f;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+<body>
+
+<h1>All Customers</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total Amount</th>
+        <th>Registered At</th>
+    </tr>
+    {% for customer in file %}
+    <tr>
+        <td>{{ customer.customer_id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>{{ customer.address }}</td>
+        <td>{{ customer.quantity }}</td>
+        <td>{{ customer.price }}</td>
+        <td>{{ customer.total_amount }}</td>
+        <td>{{ customer.registered_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
